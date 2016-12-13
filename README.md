@@ -1,4 +1,4 @@
-# How to secure RabbitMQ messages with SSL encryption  
+# How to secure RabbitMQ with SSL encryption  
 This Repository shows an example configuration about how to use RabbitMQ-Server with SSL-Encryption.
 
 There are two examples which can be find under `src/main/java/ssl`:
