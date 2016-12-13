@@ -16,8 +16,12 @@ Even the configuration files are commented properly.
 Make sure
 - to check the rabbitmq-server logfiles under `/var/log/rabbitmq/` on the server. 
 - to define the connection details like `HOST, PORT, USERNAME, PASSWORD` correctly
-- to create valid certificates and CA and provide them in the right format[1]
-- to check paths permissions (must be readable by the rabbitmq user)
+- to create valid certificates and CA and provide them in the right format [1]. You can verify the certs and the chain-of-trust with openssl.
+- to check paths permissions (must be readable by the rabbitmq user e.g. `chown -R rabbitmq:rabbitmq demoCA/ && chmod 400 demoCA/`)
 
+# Notes and References
+[1] To create a certificate authority on your own, check https://wiki.ubuntuusers.de/CA/ (German), https://workaround.org/certificate-authority/ (English) or the docs directly under https://www.openssl.org/docs/man1.0.1/apps/CA.pl.html.
 
-[1] To create a certificate authority on your own, check https://wiki.ubuntuusers.de/CA/ (German), https://workaround.org/certificate-authority/ (English) or the docs directly under https://www.openssl.org/docs/man1.0.1/apps/CA.pl.html
+[2] https://www.rabbitmq.com/ssl.html
+
+[3] https://www.rabbitmq.com/configure.html
