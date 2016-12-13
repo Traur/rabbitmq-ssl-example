@@ -10,13 +10,14 @@ Each package provides an example implementation of the RabbitMQ-Java-Client
 and the used server configuration file. 
 
 The functionality is explained via in-line comments rather than writing a big article here.
-Even the configuration files are commented properly.
-
-git 
+Even the configuration files are commented properly. 
 
 # Troubleshooting
 Make sure
-- to check the rabbitmq-server logfiles under /var/log/rabbitmq/. 
-- to define the connection details like HOST, PORT, USERNAME, PASSWORD correctly
+- to check the rabbitmq-server logfiles under `/var/log/rabbitmq/` on the server. 
+- to define the connection details like `HOST, PORT, USERNAME, PASSWORD` correctly
 - to create valid certificates and CA and provide them in the right format[1]
 - to check paths permissions (must be readable by the rabbitmq user)
+
+
+[1] To create a certificate authority on your own, check https://wiki.ubuntuusers.de/CA/ (German), https://workaround.org/certificate-authority/ (English) or the docs directly under https://www.openssl.org/docs/man1.0.1/apps/CA.pl.html
