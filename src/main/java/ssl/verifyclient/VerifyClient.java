@@ -22,20 +22,23 @@ import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.Envelope;
 
 /**
+ * To use client site authentication via SSL
+ * you need to provide a keyfile in PKCS#12 Format,
+ * initialize the Keymanager, Keystore, and TrustManager.
  * 
- * @author Phillip
- *
- *
- * In the /etc/rabbitmq/rabbitmq.config, if the values
- * 	{verify, verify_peer}
- * 		and
- *  {fail_if_no_peer_cert, true}
- *  
- *  are set, and the client does not provide a certificate
- *  on its own, the connection will fail with the exception
- *  
- *  	javax.net.ssl.SSLHandshakeException: Received fatal alert: handshake_failure
- *
+ *  A short explanation can be found here (https://www.rabbitmq.com/ssl.html#trust-levels)
+ *  For a more in-depth discussion please refer 
+ *  	https://www.digitalocean.com/community/tutorials/java-keytool-essentials-working-with-java-keystores
+ *  	https://docs.oracle.com/cd/E19509-01/820-3503/ggfen/index.html
+ *  	https://lmgtfy.com/?q=java+keystore
+ * 
+ * Unfortunately, all these Exceptions are necessary. Handle them properly.
+ * @throws KeyManagementException
+ * @throws NoSuchAlgorithmException
+ * @throws IOException
+ * @throws UnrecoverableKeyException
+ * @throws KeyStoreException
+ * @throws CertificateException
  */
 public class VerifyClient {
 
@@ -48,25 +51,6 @@ public class VerifyClient {
 	
 	private static String QUEUE_NAME = "hello";
 	
-	/**
-	 * To use client site authentication via SSL
-	 * you need to provide a keyfile in PKCS#12 Format,
-	 * initialize the Keymanager, Keystore, and TrustManager.
-	 * 
-	 *  A short explanation can be found here (https://www.rabbitmq.com/ssl.html#trust-levels)
-	 *  For a more in-depth discussion please refer 
-	 *  	https://www.digitalocean.com/community/tutorials/java-keytool-essentials-working-with-java-keystores
-	 *  	https://docs.oracle.com/cd/E19509-01/820-3503/ggfen/index.html
-	 *  	https://lmgtfy.com/?q=java+keystore
-	 * 
-	 * Unfortunately, all these Exceptions are necessary. Handle them properly.
-	 * @throws KeyManagementException
-	 * @throws NoSuchAlgorithmException
-	 * @throws IOException
-	 * @throws UnrecoverableKeyException
-	 * @throws KeyStoreException
-	 * @throws CertificateException
-	 */
 	public VerifyClient() throws KeyManagementException, NoSuchAlgorithmException, IOException, UnrecoverableKeyException, KeyStoreException, CertificateException {
 		
 		char[] keyPassphrase = "supersecretpassword".toCharArray();
