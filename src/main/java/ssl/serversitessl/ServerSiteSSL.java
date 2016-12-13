@@ -41,9 +41,11 @@ public class ServerSiteSSL {
 		 */
 		factory.useSslProtocol("TLSv1.2");
 		
+		//Establish connection
 		Connection connection = factory.newConnection();
 		Channel channel = connection.createChannel();
 		
+		//Publish "Hello World" message
 		channel.queueDeclare(QUEUE_NAME, false, true, true, null);
 	    String message = "Hello World!";
 	    channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
@@ -62,6 +64,7 @@ public class ServerSiteSSL {
 	      };
 	      second.basicConsume(QUEUE_NAME, true, consumer);
 	    
+	      //Clean up
 	    channel.close();
 	    second.close();
 	    connection.close();
