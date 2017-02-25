@@ -71,7 +71,9 @@ $~/> chown -R root:root ./demoCA```
 
 ## Step 3: Create a new cert
 
-MASTER BRANCH -> git clone und damit automatisiert verteilen
+Zertifikat ersellen und anschließend so konvertieren, damit man es in den Clientcode einbinden kann
+`openssl pkcs12 -export -in my.cert.pem -inkey my.key.pem -out my.p12`
+
 
 # Troubleshooting
 Make sure
